@@ -15,12 +15,11 @@ It is divided into four modules:
 Basic functionalities of this application are:
 1. Add a flight
 2. List all flights
-3. List a flight bookings
+3. List a flight bookings based on flight number
 4. Add a Customer
-5. Display all the Customer
+5. Display all the Customers
 6. Book a flight
 7. Cancel a Booking
-8. List flights booked by the user
+8. List flights booked by a particular user
 9. List all bookings 
-10. Exit
 
