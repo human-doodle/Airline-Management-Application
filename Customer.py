@@ -12,8 +12,12 @@ class Customer:
         self.__age = age
         Customer.__id=Customer.__id+1
     def display(self):
-        print("Customer id : "+ self.__id)
+        print("\n")
+        print("Customer id : "+ str(self.__id))
         print("Name : "+ self.__name)
-        print("Age: "+ self.__age)
+        print("Age: "+ str(self.__age))
+        print("\n")
+    def retcusinfo(self):
+        return self.__id, self.__name, self.__age
         
     

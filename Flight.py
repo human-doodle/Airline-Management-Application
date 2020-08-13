@@ -14,9 +14,13 @@ class Flight:
         self.__quota=q
    
     def display(self):
-        print("Flight number : "+ self.__num)
-        print("Flight source : "+ self.__from)
-        print("Flight destination : "+ self.__to)
-        print("Flight date : "+ str(self.__date))
-        print("Flight quota : "+ self.__quota)
+        print("\n")
+        print("Flight num: ",self.__num)
+        print("Source: ",self.__from)
+        print("Destination: ",self.__to)
+        print("Date: ",self.__date)
+        print("Quota: ",self.__quota)
+        print("\n")
         
+    def retinfo(self):
+        return self.__num,self.__from, self.__to,self.__date, self.__quota

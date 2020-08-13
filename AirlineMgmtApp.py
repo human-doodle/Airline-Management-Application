@@ -5,27 +5,30 @@ Created on Wed Aug 12 21:40:36 2020
 @author: Shivani
 """
 import datetime
-import Customer, Flight
+import Customer, Flight, Booking
 
 
 listuser=[]
 listflight=[]
 listbooking=[]
-actor=input("Enter user/flight : ")
    
 while(True):
     print("1. Add a flight")
     print("2. List all flights")
     print("3. List a flight bookings")
-    print("4. Add a user")
-    print("5. Display all the users")
+    print("4. Add a Customer")
+    print("5. Display all the Customer")
     print("6. Book a flight")
-    print("7. Cancel a flight")
+    print("7. Cancel a Booking")
     print("8. List flights booked by the user")
-    print("9. Exit")
+    print("9. List all bookings ")
+    print("10. Exit")
     option=input("Enter your choice : ")
-        
+
+##########################################################  
+    
     if(option=='1'):
+        print("\n Add flight \n ")
         num=input("1. Enter flight number : ")
         f = input("2. Enter source : ")
         t = input("3. Enter Destination : ")
@@ -36,41 +39,116 @@ while(True):
                 
         obj=Flight.Flight(num, f, t, d, q)
         listflight.append(obj)
-        print("Added!")
-            
+        print("\n Added flight! \n")
+         
+###########################################################
+        
     elif(option=='2'):
-        print("\n All flight details : \n ")
+        print("\n All flight details  \n ")
         for obj in listflight:
             obj.display()
             print("\n")
-        
+         
+###########################################################
+                
     elif(option=='3'):
-        pass
-    
+        print("\n All flight booking  \n ")
+        fno=input("Enter flight number you want to view bookings for : ")
+        for obj in listbooking:
+            bookinfo=obj.retbook()
+            print(bookinfo[3])
+            if(bookinfo[3]==fno):
+                obj.display()
+         
+###########################################################
+      
     elif(option=='4'):
+        print("\n Add Customer \n ")
         name= input("Enter name : ")
         age = int(input("Enter age : "))
         obj=Customer.Customer(name, age)
         listuser.append(obj)       
-        print("Customer Added !! ")
+        print("\nCustomer Added !!",obj.retcusinfo()[0], "is the customerID \n")
+           
+###########################################################
         
     elif(option=='5'):
-        print("\n All Customer details : \n ")
+        print("\n All Customer details  \n ")
         for obj in listuser:
             obj.display()
             print("\n")
-        
+          
+###########################################################
+          
     elif(option=='6'):
-        print("Book a flight : \n")
-        name = input("Enter name : ")
+        
+        print("\n Book a flight  \n")
+        id = int(input("Enter id : "))
         flag=True
         for obj in listuser:
-            if(obj.name==name):
+            custinfo=obj.retcusinfo()
+            print(custinfo[0])
+            if(custinfo[0]==id):
                 flag=False
+                break
         if(flag):
-            print("Customer doesn't exist, Please add the customer first")
-        
+            print("Customer doesn't exist, Please add the customer first \n")
+        else:
+            fr = input("Enter Source : ")
+            to = input("Enter Destination : ")
+            for obj in listflight:
+                flightinfo=obj.retinfo()
+                source, destination = [flightinfo[i] for i in (1, 2)]
+                if(fr==source and to==destination):
+                    obj.display()
+            fno=input("Enter Flight number you want to book : ")
+            
+            for obj in listflight:
+                flightno=obj.retinfo()[0]
+                if(fno==flightno):
+                    break
+            
+            objbook=Booking.Booking(custinfo, flightinfo)
+            listbooking.append(objbook)
+            print("\n Booked!! \n")
+            objbook.display()
+           
+###########################################################
+    
+    elif(option=='7'):
+        print("\n Cancel a booking \n")
+        id=int(input("Enter id: "))
+        fno = input("Enter flight number you want to cancel : ")
+        for obj in listbooking:
+            bookinfo=obj.retbook()
+            print(bookinfo[0], bookinfo[3])
+            if(id==bookinfo[0] and fno==bookinfo[3]):
+                listbooking.remove(obj)
+                print("\n Cancelled \n")
+         
+###########################################################
+     
+    elif(option=='8'):
+        print("\n Flights booked by the Customer \n")
+        id=int(input("Enter id: "))
+        for obj in listbooking:
+            bookinfo=obj.retbook()
+            if(id== bookinfo[0]):
+                obj.display()
+                
+##########################################################
+                
     elif(option=='9'):
+        for obj in listbooking:
+            
+                obj.display()
+         
+###########################################################
+          
+    elif(option=='10'):
         break
+         
+###########################################################
+  
     else:
-        print("Invalid input !!")
+        print("\n Invalid input !! \n")
