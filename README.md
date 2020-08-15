@@ -23,5 +23,5 @@ Basic functionalities of this application are:
 8. List flights booked by a particular user
 9. List all bookings 
 
-##EDIT
-###Coded same application in java and stored under folder Airline-Management-System
+## EDIT
+### Coded same application in java and stored under folder Airline-Management-System
